@@ -2,9 +2,9 @@
 // test-create-table-and-record.php
 
 require_once 'ORM.php';
-require_once 'Product.php'; // Assuming Product is the class representing your table entity
+require_once 'Product.php'; 
 
-// Instantiate ORM with table name and class name
+
 $orm = new ORM('products', 'Product');
 
 // Create the table

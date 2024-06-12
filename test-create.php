@@ -11,7 +11,7 @@ $orm = new ORM('products', 'Product');
 $orm->createTable();
 
 // Create a new product object
-$product = new Product('Sample Product', 19.99, 'Description of Sample Product');
+$product = new Product('Product1', 12, 'Description 1');
 
 // Insert the product into the table
 $productId = $orm->create($product);

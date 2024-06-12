@@ -45,8 +45,8 @@ class ORM implements ORMInterface
         $columns = array_keys($objectVars);
         $values = array_values($objectVars);
         $id = $object->id;
+        
 
-        // Remove 'id' from the columns and values
         $index = array_search('id', $columns);
         if ($index !== false) {
             unset($columns[$index]);
@@ -78,24 +78,6 @@ class ORM implements ORMInterface
 
         $sql = "CREATE TABLE IF NOT EXISTS {$this->table} ($columns)";
         $this->db->exec($sql);
-    }
-
-    public function updateTable()
-    {
-        $currentDefinition = $this->getTableDefinition($this->className);
-        $newDefinition = $this->getTableDefinition($this->className);
-
-        $columnsToAdd = [];
-        foreach ($newDefinition as $column => $definition) {
-            if (!isset($currentDefinition[$column])) {
-                $columnsToAdd[] = "ADD COLUMN $column $definition";
-            }
-        }
-
-        if (!empty($columnsToAdd)) {
-            $sql = "ALTER TABLE {$this->table} " . implode(", ", $columnsToAdd);
-            $this->db->exec($sql);
-        }
     }
 
     private function getTableDefinition($className)
